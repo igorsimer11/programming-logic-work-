@@ -1,8 +1,8 @@
-  Scanner in = new Scanner (System.in); 
+Scanner in = new Scanner (System.in); 
         
         String palavra; //String usada para guardar a(s) palavras
         System.out.println("Digite abaixo:"); //solicita a(s) palavras
-        palavra = in.nextLine(); //onde o usuario irá definir as palavras
+        palavra = in.nextLine().toLowerCase(); //onde o usuario irá definir as palavras
         char[] letra = palavra.toCharArray(); // onde será convertido em char
         int letlarg = 6; // largura das letras grandes 
         int letalt = 5; // atltura das letras grandes
