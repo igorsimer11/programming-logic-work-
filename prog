@@ -1,4 +1,4 @@
-Scanner in = new Scanner (System.in); 
+   Scanner in = new Scanner(System.in);
         
         String palavra; //String usada para guardar a(s) palavras
         System.out.println("Digite abaixo:"); //solicita a(s) palavras
@@ -9,10 +9,9 @@ Scanner in = new Scanner (System.in);
         int tmn =letra.length * letlarg;  // tamanho da(s) palavra(s)
         char [][] letid = new char[letalt][]; // ident. das letras definidas
         char [][] bigletter= new char[letalt][tmn];  //caracter da let.gran.
-         
         for(int i = 0;i<letra.length;i++){   // função que identifica todas os caracteres existentes em cada pos   
             if(letra[i]=='a'){
-              letid = letraA();
+              letid = letraA(); //solicita as letras em caracter e as define na pos. Assim sera o mesmo em todas as letras e numeros e o espaço 
             }else if(letra[i]=='b'){
                letid = letraB();
             }else if(letra[i]=='c'){
@@ -87,26 +86,26 @@ Scanner in = new Scanner (System.in);
             else{
                 letid = esp();
             }
-             // define as letras 
+             // define as letras e suas posições
             for(int f=0;f<letalt;f++){
                 for(int a=0;a<letlarg;a++){
                 bigletter[f][i*letid[0].length+a]=letid[f][a];
                 }
             }
         }
-        for(int i=0;i<letalt;i++){
+        for(int i=0;i<letalt;i++){ //imprimi as letras nas posições corretas
             System.out.println(bigletter[i]);
     }   
 }
     
-    
+    //onde fica cada caracter das letras e numeros; em ordem alfabética/numerica para uma melhor organização e visualização!!
     public static char[][] letraA(){
-        char[][]letraA = {{'X','X','X','X','X',' '},
+        char[][]letraA = {{'X','X','X','X','X',' '}, 
                           {'X',' ',' ',' ','X',' '},
                           {'X','X','X','X','X',' '},
                           {'X',' ',' ',' ','X',' '},
                           {'X',' ',' ',' ','X',' '}};
-        return letraA;
+        return letraA; //retorna o valor do caracter!!
     }
     public static char[][] letraB(){
         char[][]letraB = {{'X','X','X','X',' ',' '},
