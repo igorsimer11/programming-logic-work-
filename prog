@@ -1,4 +1,9 @@
-   Scanner in = new Scanner(System.in);
+ /*The program was chosen as an exercise in programming logic, being able to use only what the teacher taught until its construction.
+*Function of the program:
+* Receive what the user typed (Letters/Numbers) and convert them to giant letters/numbers.
+* I hope you can understand the code, for an easy interpretation I left it commented for what the functions and variables used are for
+ */
+ Scanner in = new Scanner(System.in);
         
         String palavra; //String usada para guardar a(s) palavras
         System.out.println("Digite abaixo:"); //solicita a(s) palavras
