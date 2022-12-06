@@ -1,35 +1,129 @@
- Scanner in = new Scanner(System.in);
-        double num; //variaveis
-        double raiz = 0; //variaveis
-        System.out.println("Digite a raiz quadrada:");
-        num = in.nextDouble(); //recebe o valor pelo usuario
-        raiz = calc(num);  //calculo
-        System.out.println("a raiz de " + num + " é " + raiz); //resultado
-    }
-    public static double calc(double num){ //onde a raiz é calculada
-        double raiz = 0;
-        double aux = 0; 
-        
-        for(int i = 0; i < num; i++){
-            double calc = 1;
-            int auxi = 0;
-            auxi = (i - 1) * (i - 1);
-            if((i * i) > num){
-                calc = auxi;
-                break;
-            }
-            raiz = calc;
+Scanner in = new Scanner(System.in);
+        int mmc = 1; //variaveis
+        int mdc = 1;
+        int primo = 2;
+        System.out.println("Digite a quantidade de numeros a ser calculado:");
+        int quantNum = in.nextInt(); // int para quantos numeros o usuario vai desejar no mmc 
+        while(quantNum <= 0) {
+            System.out.println("Por favor, digite um valor maior que 0."); // para corrigir caso o usuario digite 0
+            System.out.println(" ");
         }
-        
-        while((raiz * raiz) != num){
-            raiz = (raiz + (num/raiz))/2;
-            if(raiz == aux){
-                
-                break;
-            }
-            aux = raiz;
-        }
-        return raiz;
-    }
+        int[] numeros = new int[quantNum]; //converte para vetor
+        for(int i = 0; i < quantNum; i++) { //função que recebe o valor de cada numero
+            System.out.print("Digite o " + (i+1) + "º número: ");
+            numeros[i] = in.nextInt();            
+            while(numeros[i] <= 0){
+                System.out.println("Digite um número maior que 0.");
+                System.out.println(" ");
+                System.out.print("Digite o " + (i+1) + "º número: ");
+                numeros[i] = in.nextInt();                   
 
-}    
+            }
+        } 
+        System.out.println(" ");
+        while(!tudo1(numeros)){ // estrutura do mmc  e mdc 
+            while(!divPrimo(primo, numeros)){
+                primo = proxPrimo(primo);
+                divPrimo(primo, numeros);
+            }
+            imprime(numeros, primo);
+            if(quantDivisoes(primo, numeros) == quantNum){
+                mdc = mdc * primo;
+            }
+            dividir(primo, numeros);
+            mmc = primo * mmc;
+            tudo1(numeros);
+            divPrimo(primo, numeros);
+        }
+        imprimeFinal (numeros, mmc, mdc);
+        
+    }
+    public static boolean divPrimo (int primo, int[] numeros) { // função para divisão dos numeros primos 
+        boolean divPrimo;
+        int cont = 0;
+        for(int i = 0; i < numeros.length; i++) {
+            if((numeros[i] % primo) == 0){
+                cont++;
+            }
+        }
+        if(cont == 0){
+            divPrimo = false;
+        }
+        else{
+            divPrimo = true;
+        }
+    
+        return divPrimo;    
+    }
+    public static boolean tudo1(int[] numeros) {
+        boolean tudo1;
+        int cont = 0;
+        for(int i = 0; i < numeros.length; i++){
+            if(numeros[i] != 1) {
+                break;
+            }
+            else if(numeros[i] == 1) {
+                cont++;
+            }
+        }
+        if(cont == numeros.length) {
+            tudo1 = true;
+        }
+        else{
+            tudo1 = false;
+        }
+        return tudo1;    
+    }
+    public static int proxPrimo(int primo){
+        primo++;
+        int div;
+        int contZeros = 0;
+        while(contZeros != 1){
+            for(int i = 1; i < primo; i++){
+                div = primo % i;
+                if(div == 0) {
+                    contZeros++;
+                }
+            }
+            if(contZeros != 1){
+                contZeros = 0;
+                primo++;
+            }
+        }
+
+        return primo;    
+    }
+    public static void dividir(int primo, int[] numeros){ // função para divisão 
+        for(int i = 0; i < numeros.length; i++){
+            if(numeros[i] == 0){
+                numeros[i] = 1;
+            }
+            else if((numeros[i] % primo) == 0) {
+                numeros[i] = numeros[i] / primo;
+            }
+        }
+    }
+    public static void imprime(int[] numeros, int primo){ // função das barrinhas do mmc/mdc
+        for(int i = 0; i < numeros.length; i++){
+            System.out.print(" " + numeros[i] + " ");
+        }
+        System.out.print("| ");
+        System.out.println(primo);
+    }
+    public static void imprimeFinal(int[] numeros, int mmc, int mdc){ // impressao do valor final 
+        for(int i = 0; i < numeros.length; i++){
+            System.out.print(" " + numeros[i] + " ");
+        }
+        System.out.print("| ");
+        System.out.println("MMC:" + mmc + " | MDC:" + mdc);
+    }
+    public static int quantDivisoes(int primo, int[] numeros){ // função para imprimir quantos numeros foram impressos
+        int num = 0;
+        for(int i = 0; i < numeros.length; i++){
+            if(numeros[i] % primo == 0){
+                num++;
+            }
+        }
+        return num;
+    }
+}
