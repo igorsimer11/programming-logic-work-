@@ -1,13 +1,12 @@
-Scanner in = new Scanner(System.in);
-        double num;
-        double raiz = 0;
+ Scanner in = new Scanner(System.in);
+        double num; //variaveis
+        double raiz = 0; //variaveis
         System.out.println("Digite a raiz quadrada:");
-        num = in.nextDouble();
-        raiz = calc(num);
-        
-        System.out.println("a raiz de " + num + " é " + raiz);
+        num = in.nextDouble(); //recebe o valor pelo usuario
+        raiz = calc(num);  //calculo
+        System.out.println("a raiz de " + num + " é " + raiz); // resultado
     }
-    public static double calc(double num){
+    public static double calc(double num){ //onde a raiz é calculada
         double raiz = 0;
         double aux = 0; 
         
