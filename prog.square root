@@ -4,7 +4,7 @@
         System.out.println("Digite a raiz quadrada:");
         num = in.nextDouble(); //recebe o valor pelo usuario
         raiz = calc(num);  //calculo
-        System.out.println("a raiz de " + num + " é " + raiz); // resultado
+        System.out.println("a raiz de " + num + " é " + raiz); //resultado
     }
     public static double calc(double num){ //onde a raiz é calculada
         double raiz = 0;
